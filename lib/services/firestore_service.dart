@@ -30,10 +30,17 @@ class FirestoreService {
     }
   }
 
-// TODO: Update post data
+// TODO: Update post data, if field is empty return current data (don't overwrite to blank)
+  Future<void> updatePost({@required String id, Post post}) async {
+    try {
+      await _wastedItemsCollectionReference.doc(id).set(post.toJson());
+    } catch (e) {
+      print(e);
+    }
+  }
 
 // Delete post data
-  Future<void> deletePost({String id}) async {
+  Future<void> deletePost({@required String id}) async {
     try {
       await _wastedItemsCollectionReference.doc(id).delete();
     } catch (e) {
@@ -42,14 +49,16 @@ class FirestoreService {
   }
 
   // Get current user id
-  Future<String> currentFirestoreUserProperty({@required BuildContext context, @required String property}) async {
+  Future<String> currentFirestoreUserProperty(
+      {@required BuildContext context, @required String property}) async {
     // Get current user ID from Firebase Auth
-    String currUserID = AuthProvider.of(context).auth.currentFirebaseAuthUserID();
+    String currUserID =
+        AuthProvider.of(context).auth.currentFirebaseAuthUserID();
 
     // Get and return corresponding user from Firestore users collection, which is the same name as the document ID
     // Assumes ID is same name as document name in users collection. If not, need to loop and find.
-    final DocumentSnapshot user = await _usersCollectionReference.doc(currUserID).get();
-    return
-     user.data()[property];
+    final DocumentSnapshot user =
+        await _usersCollectionReference.doc(currUserID).get();
+    return user.data()[property];
   }
 }

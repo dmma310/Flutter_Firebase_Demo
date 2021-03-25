@@ -11,7 +11,7 @@ class PostDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
-      title: 'Wastegram',
+      title: 'Posts',
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
