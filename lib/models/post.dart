@@ -19,14 +19,19 @@ class Post {
       '${DateFormat('EEEE').format(date.toDate())}, ${DateFormat.yMMMMd().format(date.toDate())}'; // Thursday, December 12, 2021
 
   // Convert snapshot to model object
-  // TODO: Error handling, when field doesn't exist
   Post.fromSnapshot(QueryDocumentSnapshot snapshot)
-      : date = snapshot['date'],
-        quantity = snapshot['quantity'],
-        imageURL = snapshot['imageURL'],
-        locationData = snapshot['locationData'],
-        userRole = snapshot['userRole'],
-        userID = snapshot['userID'];
+      : date = snapshot.data().containsKey('date') ?? Timestamp(0, 0),
+        quantity = snapshot.data().containsKey('quantity') ?? 0,
+        imageURL = snapshot.data().containsKey('imageURL') ?? '',
+        locationData = snapshot.data().containsKey('locationData') ?? GeoPoint(0, 0),
+        userRole = snapshot.data().containsKey('userRole') ?? 'User',
+        userID = snapshot.data().containsKey('userID') ?? 0;
+        // date = snapshot['date'],
+        // quantity = snapshot['quantity'],
+        // imageURL = snapshot['imageURL'],
+        // locationData = snapshot['locationData'],
+        // userRole = snapshot['userRole'],
+        // userID = snapshot['userID'];
 
   // Return model object as json map
   Map<String, dynamic> toJson() => {
