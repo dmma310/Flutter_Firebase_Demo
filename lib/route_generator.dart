@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wastegram_extended/screens/business_card.dart';
 import 'package:wastegram_extended/screens/listpage.dart';
 import 'package:wastegram_extended/screens/login_signup.dart';
+import 'package:wastegram_extended/screens/modify_post.dart';
 import 'package:wastegram_extended/screens/new_post.dart';
 import 'package:wastegram_extended/screens/post_detail.dart';
 import 'package:wastegram_extended/widgets/auth_page_decider.dart';
@@ -24,6 +25,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ListPage());
     case BusinessCardPage.routeName:
       return MaterialPageRoute(builder: (context) => BusinessCardPage());
+    case ModifyPost.routeName:
+      return MaterialPageRoute(builder: (context) => ModifyPost(post: args));
     default:
       return _errorRoute();
   }

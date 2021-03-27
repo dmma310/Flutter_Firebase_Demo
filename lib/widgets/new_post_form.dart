@@ -42,7 +42,7 @@ class NewPostForm extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 12.0,
             width: double.infinity,
             child: const Icon(Icons.cloud_upload),
-            decoration: const BoxDecoration(color: Colors.blue),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
           ),
           onTap: () async {
             await FirestoreService().createPost(

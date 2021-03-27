@@ -6,14 +6,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 import 'package:wastegram_extended/screens/new_post.dart';
 
-class CameraFab extends StatelessWidget {
+class NewPostFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-        child: Icon(Icons.photo_camera),
-        onPressed: () async {
-          Navigator.of(context).pushNamed(NewPost.routeName);
-        });
+      child: Icon(Icons.post_add),
+      onPressed: () async {
+        Navigator.of(context).pushNamed(NewPost.routeName);
+      },
+      backgroundColor: Theme.of(context).primaryColor,);
   }
 }
 

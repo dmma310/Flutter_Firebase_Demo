@@ -1,6 +1,5 @@
 // My custom scaffold widget
 import 'package:flutter/material.dart';
-import 'package:wastegram_extended/screens/listpage.dart';
 import 'package:wastegram_extended/widgets/camera_fab.dart';
 import 'package:wastegram_extended/widgets/drawer.dart';
 
@@ -30,7 +29,8 @@ class MyScaffold extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.of(context)
-                      .pushReplacementNamed(ListPage.routeName);
+                      // .pushReplacementNamed(ListPage.routeName);
+                      .pop();
                 })
             : null,
         title: Text(title),
@@ -50,7 +50,7 @@ class MyScaffold extends StatelessWidget {
       endDrawer: MyDrawer(),
       body: body,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: cameraFab ? CameraFab() : null,
+      floatingActionButton: cameraFab ? NewPostFab() : null,
     );
   }
 }
