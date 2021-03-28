@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wastegram_extended/config/style.dart';
 import 'package:wastegram_extended/route_generator.dart';
+import 'package:wastegram_extended/services/analytics_service.dart';
 import 'package:wastegram_extended/services/auth_provider.dart';
 import 'package:wastegram_extended/services/auth_service.dart';
 import 'package:wastegram_extended/widgets/auth_page_decider.dart';
@@ -51,6 +52,7 @@ class AppState extends State<App> {
                 darkTheme: mainTheme(isDarkMode: this.isDarkMode),
                 onGenerateRoute: generateRoute,
                 initialRoute: AuthPageDecider.routeName,
+                navigatorObservers: [AnalyticsService().analyticsObserver],
               ),
             );
           } else if (snapshot.hasError) {

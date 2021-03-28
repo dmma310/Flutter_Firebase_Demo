@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:wastegram_extended/services/analytics_service.dart';
 import 'package:wastegram_extended/services/firestore_service.dart';
 import 'package:wastegram_extended/models/user.dart' as MyUser;
 
+ // Source: https://www.filledstacks.com/post/firebase-analytics-and-metrics-in-flutter/
 class AuthService {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirestoreService _firestoreService = FirestoreService();
+  static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  static final FirestoreService _firestoreService = FirestoreService();
+  static final AnalyticsService _analytics = AnalyticsService();
 
   // Subscribe and get authentication state of user, return user if logged in.
   Stream<User> get authStateChanges {
@@ -20,6 +23,7 @@ class AuthService {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      await _analytics.logLogin();
     } catch (e) {
       print(e);
     }
@@ -40,6 +44,9 @@ class AuthService {
       // Create user in Firestore users collection with newly created id, and return id
       await _firestoreService.createUser(
           MyUser.User(id: authResult.user.uid, email: email, userRole: role));
+      // set the user id on the analytics service
+      await _analytics.setUserProperties(userID: currentFirebaseAuthUserID(), userRole: currentUserRole());
+      await _analytics.logSignUp();
     } catch (e) {
       return e.message;
     }

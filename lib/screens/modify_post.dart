@@ -4,6 +4,7 @@ import 'package:wastegram_extended/config/constants.dart';
 
 import 'package:wastegram_extended/models/post.dart';
 import 'package:wastegram_extended/screens/listpage.dart';
+import 'package:wastegram_extended/services/analytics_service.dart';
 import 'package:wastegram_extended/services/firestore_service.dart';
 import 'package:wastegram_extended/widgets/camera_fab.dart';
 import 'package:wastegram_extended/widgets/date_field_form.dart';
@@ -176,6 +177,8 @@ class _ModifyPostState extends State<ModifyPost> {
                 : post.locationData.longitude);
 
         await FirestoreService().updatePost(id: post.userID, post: post);
+        // Log new post event
+        await AnalyticsService().logModifyPost(screenName: ModifyPost.routeName);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
             'Post updated',

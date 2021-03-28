@@ -241,6 +241,10 @@ PODS:
   - Firebase/Storage (7.3.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 7.3.0)
+  - firebase_analytics (7.1.1):
+    - Firebase/Analytics (= 7.3.0)
+    - firebase_core
+    - Flutter
   - firebase_auth (1.0.1):
     - Firebase/Auth (= 7.3.0)
     - firebase_core
@@ -379,6 +383,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
@@ -415,6 +420,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  firebase_analytics:
+    :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -439,6 +446,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: 69d71054fcab9a1c0d4779362f85b94aec7ff7d7
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
+  firebase_analytics: ee4abb07bfa857e7c95d97144efe9eb68be414cd
   firebase_auth: 9f6491ea8e44570323361ae713a2ae3175b3f21a
   firebase_core: d2e03528e2a600891f6f460b5e92932624480d1d
   firebase_crashlytics: a62319db93baf2bfeca8a2384af3f29e3d62b09c
