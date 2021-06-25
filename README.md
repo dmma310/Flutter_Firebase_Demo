@@ -1,6 +1,6 @@
 # wastegram_extended
 
-* Intro
+## Intro
 Build an application for recording food waste. Practice applying the concepts of location services, camera / image picker, permissions, forms, navigation, lists, asynchronous programming, streams, and Firebase backend services. Enhance your application with analytics, crash reporting, accessibility, internationalization, debugging and automated testing.
 samples, guidance on mobile development, and a full API reference.
 
